@@ -19,7 +19,7 @@ pipeline {
         stage('Pre Test') {
             steps {
                 echo 'Installing dependencies'
-                pwsh ('go version')
+                pwsh (script: 'go version')
             }
         }
     }
