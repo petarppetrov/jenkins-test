@@ -19,7 +19,12 @@ pipeline {
         stage('Pre Test') {
             steps {
                 echo 'Installing dependencies'
-                pwsh (script: 'go version')
+                pwsh(script: 'go version')
+                pwsh(script: 'docker images -a')
+                pwsh(script: """
+                    cd cmd/simple-go-service/internal
+                    go test
+                """)
             }
         }
     }
