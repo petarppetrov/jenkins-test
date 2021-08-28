@@ -11,12 +11,6 @@ pipeline {
     // }
 	
     stages {
-        stage('CLEAN') {
-            failFast true
-            steps {
-                cleanWs()
-            }
-        }
         stage('Verify branch') {
             steps {
                 echo "$GIT_BRANCH"
