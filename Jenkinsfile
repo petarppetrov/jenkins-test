@@ -11,6 +11,12 @@ pipeline {
     // }
 	
     stages {
+        stage('CLEAN') {
+            failFast true
+            steps {
+                cleanWs()
+            }
+        }
         stage('Verify branch') {
             steps {
                 echo "$GIT_BRANCH"
@@ -19,9 +25,8 @@ pipeline {
         stage('Pre Test') {
             steps {
                 echo 'Installing dependencies'
-                pwsh(script: 'go version')
-                pwsh(script: 'docker images -a')
-                pwsh(script: """
+                powershell(script: 'go version')
+                powershell(script: """
                     cd cmd/simple-go-service/internal
                     go test
                 """)
